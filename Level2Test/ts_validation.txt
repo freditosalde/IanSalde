@@ -1,0 +1,31 @@
+*** Settings ***
+Suite Teardown    Closing the browser
+Resource          resource.txt
+Resource          testdata.txt
+
+*** Test Cases ***
+checking_text
+    [Setup]
+    Open Browser To Test Page
+    Verify Text and Buttons on Page
+    Submit Form
+    Error message displayed
+
+checking_fields
+    Verify Input Fields and Radio buttons on Page
+    Verify Input Fields and Radio buttons on Page
+
+fillout form Male
+    Keyin Name
+    Keyin Age
+    Select Male Gender
+    Submit Form
+
+checking text and check button on next page
+    Verify text and check button on page2
+
+checking success form
+    Verify Form Submit Page
+
+checking form repository page
+    Verify Repository Page

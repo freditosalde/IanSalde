@@ -1,0 +1,245 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+Resource          testdata.txt
+
+*** Variables ***
+
+*** Keywords ***
+Open Browser To Test Page
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Test Page Should Be Open
+
+Test Page Should Be Open
+    Title Should Be    Test Form
+
+Submit Form
+    Click Button    ss-submit
+
+Verify Text and Buttons on Page
+    Page Should Contain    Test Form
+    Page Should Contain    Name
+    Page Should Contain    Gender
+    Page Should Contain    Male
+    Page Should Contain    Female
+    Page Should Contain Button    id=ss-submit    ${CONTINUE BUTTON}
+
+Verify Input Fields and Radio buttons on Page
+    Page Should Contain Radio Button    ${GENDER MALE}
+    Page Should Contain Radio Button    ${GENDER FEMALE}
+    Page Should Contain Textfield    ${NAME LOCATOR}
+    Page Should Contain Element    ${AGE LOCATOR}
+
+Error message displayed
+    Page Should Contain Element    ${ERROR1}
+    Page Should Contain Element    ${ERROR2}
+
+Keyin Name
+    Input Text    ${NAME LOCATOR}    ${NAME}
+
+Keyin Age
+    Input Text    ${AGE LOCATOR}    ${AGE}
+
+Select Male Gender
+    Click Element    ${GENDER MALE}
+
+Verify text and check button on page2
+    Page Should Contain    Test Form
+    Page Should Contain    Sports (Men)
+    Page Should Contain Checkbox    ${SPORT MEN BASKETBALL}    Basketball
+    Page Should Contain Checkbox    ${SPORT MEN WRESTLING}    Wrestling
+    Page Should Contain Checkbox    ${SPORT MEN RUNNING}    Running
+    Page Should Contain Checkbox    ${SPORT MEN MMA}    MMA
+    Page Should Contain Checkbox    ${SPORT MEN BOXING}    Boxing
+    Page Should Contain Button    ${BACK}
+    Page Should Contain Button    ${CONTINUE BUTTON}
+    Click Button    ${BACK}
+    Page Should Contain    Test Form
+    Click Element    ${GENDER FEMALE}
+    Click Button    ${CONTINUE BUTTON}
+    Page Should Contain    Test Form
+    Page Should Contain    Sports (Women)
+    Page Should Contain Checkbox    ${SPORT WOMEN VOLLEYBALL}    Volleyball
+    Page Should Contain Checkbox    ${SPORT WOMEN SWIMMING}    Swimming
+    Page Should Contain Checkbox    ${SPORT WOMEN RUNNING}    Running
+    Page Should Contain Checkbox    ${SPORT WOMEN GYMNASTICS}    Gymnastics
+    Page Should Contain Checkbox    ${SPORT WOMEN TENNIS}    Tennis
+    Select Checkbox    ${SPORT WOMEN VOLLEYBALL}
+    Page Should Contain Button    ${BACK}
+    Page Should Contain Button    ${CONTINUE BUTTON}
+    Click Button    ${CONTINUE BUTTON}
+
+Verify Form Submit Page
+    Page Should Contain    Test Form
+    Page Should Contain    Your response has been recorded.
+    Page Should Contain Link    ${PREVIOUS RESPONSE LINK}
+    Page Should Contain Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Click Link    ${RESPOND RECORDED}
+    Select Window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Title Should Be    Test Form
+
+Verify Repository Page
+    Select Window    Test Form - Google Forms
+    Page Should Contain Element    ${REPOSITORY RESPONSE COUNT}
+    Page Should Contain    Name
+    Page Should Contain Element    ${REPOSITORY NAMES TABLE}
+    Page Should Contain    Age
+    Page Should Contain Element    ${REPOSITORY AGE TABLE}
+    Page Should Contain    Gender
+    Page Should Contain Element    ${REPOSITORY GENDER IMAGE PIE}
+    Page Should Contain Element    ${REPOSITORY MALE RESPONSE TABLE}
+    Page Should Contain    Sports (Men)
+    Page Should Contain Element    ${REPOSITORY SPORTS MEN IMAGE GRAPH}
+    Page Should Contain Element    ${REPOSITORY SPORTS MEN RESPONSE TABLE}
+    Page Should Contain    Sports (Women)
+    Page Should Contain Element    ${REPOSITORY SPORTS WOMEN IMAGE GRAPH}
+    Page Should Contain Element    ${REPOSITORY SPORTS WOMEN RESPONSE TABLE}
+    Page Should Contain Element    ${REPOSITORY DAILY RESPONSES}
+    Page Should Contain Element    ${RESPOSITORY DAILY RESPONSES IMAGE GRAPH}
+    Close Window
+
+Valid user enrollment (USER1)
+    Input Text    ${NAME LOCATOR}    ${USER1}
+    Input Text    ${AGE LOCATOR}    ${AGE1}
+    Click Element    ${GENDER MALE}
+    Submit Form
+    Select Checkbox    ${SPORT MEN BASKETBALL}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Table Should Contain    ${REPOSITORY NAMES TABLE}    ${USER1}
+    Close Window
+
+Valid user enrollment (USER2)
+    Select window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${USER2}
+    Input Text    ${AGE LOCATOR}    ${AGE2}
+    Click Element    ${GENDER MALE}
+    Submit Form
+    Select Checkbox    ${SPORT MEN WRESTLING}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Table Should Contain    ${REPOSITORY NAMES TABLE}    ${USER2}
+    Close Window
+
+Valid user enrollment (USER3)
+    Select window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${USER3}
+    Input Text    ${AGE LOCATOR}    ${AGE3}
+    Click Element    ${GENDER FEMALE}
+    Submit Form
+    Select Checkbox    ${SPORT WOMEN TENNIS}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Table Should Contain    ${REPOSITORY NAMES TABLE}    ${USER3}
+    Close Window
+
+Valid user enrollment (USER4)
+    Select window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${USER4}
+    Input Text    ${AGE LOCATOR}    ${AGE4}
+    Click Element    ${GENDER FEMALE}
+    Submit Form
+    Select Checkbox    ${SPORT WOMEN GYMNASTICS}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Table Should Contain    ${REPOSITORY NAMES TABLE}    ${USER4}
+    Close Window
+
+Valid user enrollment (USER5)
+    Select window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${USER5}
+    Input Text    ${AGE LOCATOR}    ${AGE5}
+    Click Element    ${GENDER FEMALE}
+    Submit Form
+    Select Checkbox    ${SPORT WOMEN RUNNING}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Table Should Contain    ${REPOSITORY NAMES TABLE}    ${USER5}
+    Close Window
+
+Closing the browser
+    Close Browser
+
+Invalid user enrollment (IUSER1)
+    Input Text    ${NAME LOCATOR}    ${IUSER1}
+    Input Text    ${AGE LOCATOR}    ${AGE1}
+    Click Element    ${GENDER MALE}
+    Submit Form
+    Select Checkbox    ${SPORT MEN BASKETBALL}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Element Should Not Be Visible    ${IUSER1}
+    Close Window
+
+Invalid user enrollment (IUSER2)
+    Select Window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${IUSER2}
+    Input Text    ${AGE LOCATOR}    ${AGE2}
+    Click Element    ${GENDER MALE}
+    Submit Form
+    Select Checkbox    ${SPORT MEN MMA}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Element Should Not Be Visible    ${IUSER2}
+    Close Window
+
+Invalid user enrollment (IUSER3)
+    Select Window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${IUSER3}
+    Input Text    ${AGE LOCATOR}    ${AGE3}
+    Click Element    ${GENDER MALE}
+    Submit Form
+    Select Checkbox    ${SPORT MEN BOXING}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Element Should Not Be Visible    ${IUSER3}
+    Close Window
+
+Invalid user enrollment (IUSER4)
+    Select Window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${IUSER4}
+    Input Text    ${AGE LOCATOR}    ${AGE4}
+    Click Element    ${GENDER FEMALE}
+    Submit Form
+    Select Checkbox    ${SPORT WOMEN VOLLEYBALL}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Element Should Not Be Visible    ${IUSER4}
+    Close Window
+
+Invalid user enrollment (IUSER5)
+    Select Window
+    Click Link    ${SUBMIT ANOTHER RESPONSE LINK}
+    Input Text    ${NAME LOCATOR}    ${IUSER5}
+    Input Text    ${AGE LOCATOR}    ${AGE5}
+    Click Element    ${GENDER FEMALE}
+    Submit Form
+    Select Checkbox    ${SPORT WOMEN TENNIS}
+    Submit Form
+    Click Link    ${RESPOND RECORDED}
+    Select Window    Test Form - Google Forms
+    Element Should Not Be Visible    ${IUSER5}
+    Close Window

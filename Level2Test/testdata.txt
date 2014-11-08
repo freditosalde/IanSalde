@@ -1,0 +1,65 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+
+*** Variables ***
+${URL}            https://docs.google.com/forms/d/12f7orObPipIDCZOOQsIH9_U6kGgEVOGFhd5qgO0myEo/viewform?fbzx=-5294445733973195140
+${BROWSER}        firefox
+${DELAY}          0
+${NAME}           Fredito C. Salde Jr
+${NAME LOCATOR}    entry_1563791636
+${AGE}            5    # minimum age limit
+${AGE LOCATOR}    entry_930637752
+${GENDER MALE}    group_351010933_1
+${GENDER FEMALE}    group_351010933_2
+${CONTINUE BUTTON}    ss-submit
+${GENDER OTHER}    group_351010933_3
+${SPORT MEN BASKETBALL}    group_1887354367_1
+${SPORT MEN WRESTLING}    group_1887354367_2
+${SPORT MEN RUNNING}    group_1887354367_3
+${SPORT MEN MMA}    group_1887354367_4
+${SPORT MEN BOXING}    group_1887354367_5
+${BACK}           ss-back-button
+${PREVIOUS RESPONSE LINK}    xpath=/html/body/div/div/div[2]/div[2]/a[1]
+${SUBMIT ANOTHER RESPONSE LINK}    xpath=/html/body/div/div/div[2]/div[2]/a[2]
+${RESPOND RECORDED}    xpath=/html/body/div/div/div[2]/div[2]/a[1]
+${REPOSITORY RESPONSE COUNT}    xpath=//*[@id=":0.rc"]
+${REPOSITORY SUMMARY TEXT}    xpath=//*[@id="analytics-container"]/div/div[3]/h1
+${REPOSITORY NAMES TABLE}    xpath=//*[@id=":1.sc"]
+${REPOSITORY AGE TABLE}    xpath=//*[@id=":2.sc"]
+${REPOSITORY GENDER IMAGE PIE}    xpath=//*[@id=":4.cc"]/div/img
+${REPOSITORY MALE RESPONSE TABLE}    xpath=//*[@id=":4.rt"]
+${REPOSITORY SPORTS MEN IMAGE GRAPH}    xpath=//*[@id=":7.cc"]/div/img
+${REPOSITORY SPORTS MEN RESPONSE TABLE}    xpath=//*[@id=":7.rt"]
+${REPOSITORY SPORTS WOMEN IMAGE GRAPH}    xpath=//*[@id=":a.cc"]/div/img
+${REPOSITORY SPORTS WOMEN RESPONSE TABLE}    xpath=//*[@id=":a.rt"]
+${REPOSITORY DAILY RESPONSES}    response-time-summary
+${RESPOSITORY DAILY RESPONSES IMAGE GRAPH}    xpath=//*[@id=":c.cc"]/img
+${USER1}          Fred Salde
+${AGE1}           11
+${USER2}          Fredito C. Salde Jr
+${AGE2}           5
+${USER3}          Koko Salde
+${AGE3}           15
+${USER4}          Aileen Salde
+${AGE4}           20
+${USER5}          Marilyn Salde
+${AGE5}           30
+${SPORT WOMEN VOLLEYBALL}    group_175266393_1
+${SPORT WOMEN SWIMMING}    group_175266393_2
+${SPORT WOMEN RUNNING}    group_175266393_3
+${SPORT WOMEN GYMNASTICS}    group_175266393_4
+${SPORT WOMEN TENNIS}    group_175266393_5
+${IUSER1}         Ian1 !@#$
+${IUSER2}         Ian2^%^
+${IUSER3}         Ian3!!!><
+${IUSER4}         Ian4))(
+${IUSER5}         Ian5???<>
+${ERROR1}         xpath=//*[@id="ss-form"]/ol/div[2]/div/div/div[2]
+${ERROR2}         xpath=//*[@id="ss-form"]/ol/div[3]/div/div/ul
+
+*** Keywords ***

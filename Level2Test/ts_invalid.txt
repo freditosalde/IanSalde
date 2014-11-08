@@ -1,0 +1,20 @@
+*** Settings ***
+Suite Setup       Open Browser To Test Page
+Suite Teardown    Closing the browser
+Resource          resource.txt
+
+*** Test Cases ***
+Enroll Invalid User 1 and Verify at Repository
+    Invalid user enrollment (IUSER1)
+
+Enroll Invalid User 2 and Verify at Repository
+    Invalid user enrollment (IUSER2)
+
+Enroll Invalid User 3 and Verify at Repository
+    Invalid user enrollment (IUSER3)
+
+Enroll Invalid User 4 and Verify at Repository
+    Invalid user enrollment (IUSER4)
+
+Enroll Invalid User 5 and Verify at Repository
+    Invalid user enrollment (IUSER5)

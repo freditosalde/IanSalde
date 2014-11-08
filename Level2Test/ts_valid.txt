@@ -1,0 +1,20 @@
+*** Settings ***
+Suite Setup       Open Browser To Test Page
+Suite Teardown    Closing the browser
+Resource          resource.txt
+
+*** Test Cases ***
+Enroll User 1 and Verify at Repository
+    Valid user enrollment (USER1)
+
+Enroll User 2 and Verify at Repository
+    Valid user enrollment (USER2)
+
+Enroll User 3 and Verify at Repository
+    Valid user enrollment (USER3)
+
+Enroll User 4 and Verify at Repository
+    Valid user enrollment (USER4)
+
+Enroll User 5 and Verify at Repository
+    Valid user enrollment (USER5)
